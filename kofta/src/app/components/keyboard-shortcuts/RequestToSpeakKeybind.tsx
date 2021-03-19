@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { recordKeyCombination } from "react-hotkeys";
 import { useKeyMapStore } from "../../../webrtc/stores/useKeyMapStore";
+import { useTypeSafeTranslation } from "../../utils/useTypeSafeTranslation";
 import { Button } from "../Button";
 
 interface RequestToSpeakKeybindProps {
@@ -12,6 +13,7 @@ export const RequestToSpeakKeybind: React.FC<RequestToSpeakKeybindProps> = ({
 }) => {
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(false);
+  const { t } = useTypeSafeTranslation();
   const {
     keyNames: { REQUEST_TO_SPEAK },
     setRequestToSpeakKeybind,
@@ -36,12 +38,14 @@ export const RequestToSpeakKeybind: React.FC<RequestToSpeakKeybindProps> = ({
           setActive(true);
         }}
       >
-        set keybind
+        {t("components.keyboardShortcuts.setKeybind")}
       </Button>
       <div className={`ml-4`}>
-        request to speak keybind:{" "}
+        {t("components.keyboardShortcuts.toggleRequestToSpeak")}:{" "}
         <span className={`font-bold text-lg`}>
-          {active ? "listening" : REQUEST_TO_SPEAK}
+          {active
+            ? t("components.keyboardShortcuts.listening")
+            : REQUEST_TO_SPEAK}
         </span>
       </div>
     </div>

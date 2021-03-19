@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { recordKeyCombination } from "react-hotkeys";
 import { useKeyMapStore } from "../../../webrtc/stores/useKeyMapStore";
+import { useTypeSafeTranslation } from "../../utils/useTypeSafeTranslation";
 import { Button } from "../Button";
 
 interface ChatKeybindProps {
@@ -10,6 +11,7 @@ interface ChatKeybindProps {
 export const ChatKeybind: React.FC<ChatKeybindProps> = ({ className }) => {
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(false);
+  const { t } = useTypeSafeTranslation();
   const {
     keyNames: { CHAT },
     setChatKeybind,
@@ -34,12 +36,12 @@ export const ChatKeybind: React.FC<ChatKeybindProps> = ({ className }) => {
           setActive(true);
         }}
       >
-        set keybind
+        {t("components.keyboardShortcuts.setKeybind")}
       </Button>
       <div className={`ml-4`}>
-        toggle chat keybind:{" "}
+        {t("components.keyboardShortcuts.toggleChat")}:{" "}
         <span className={`font-bold text-lg`}>
-          {active ? "listening" : CHAT}
+          {active ? t("components.keyboardShortcuts.listening") : CHAT}
         </span>
       </div>
     </div>

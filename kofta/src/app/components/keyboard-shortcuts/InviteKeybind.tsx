@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { recordKeyCombination } from "react-hotkeys";
 import { useKeyMapStore } from "../../../webrtc/stores/useKeyMapStore";
+import { useTypeSafeTranslation } from "../../utils/useTypeSafeTranslation";
 import { Button } from "../Button";
 
 interface InviteKeybindProps {
@@ -10,6 +11,7 @@ interface InviteKeybindProps {
 export const InviteKeybind: React.FC<InviteKeybindProps> = ({ className }) => {
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(false);
+  const { t } = useTypeSafeTranslation();
   const {
     keyNames: { INVITE },
     setInviteKeybind,
@@ -34,12 +36,12 @@ export const InviteKeybind: React.FC<InviteKeybindProps> = ({ className }) => {
           setActive(true);
         }}
       >
-        set keybind
+        {t("components.keyboardShortcuts.setKeybind")}
       </Button>
       <div className={`ml-4`}>
-        invite keybind:{" "}
+        {t("components.keyboardShortcuts.toggleInvite")}:{" "}
         <span className={`font-bold text-lg`}>
-          {active ? "listening" : INVITE}
+          {active ? t("components.keyboardShortcuts.listening") : INVITE}
         </span>
       </div>
     </div>
